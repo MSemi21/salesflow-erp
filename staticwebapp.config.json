@@ -1,16 +1,4 @@
 {
-  "routes": [
-    {
-      "route": "/*",
-      "allowedRoles": ["utente"]
-    }
-  ],
-  "responseOverrides": {
-    "401": {
-      "statusCode": 302,
-      "location": "/.auth/login/aad"
-    }
-  },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*"
   }
