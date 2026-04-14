@@ -1,0 +1,35 @@
+{
+  "routes": [
+    {
+      "route": "/api/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
+    }
+  ],
+  "responseOverrides": {
+    "401": {
+      "statusCode": 302,
+      "location": "/.auth/login/aad"
+    }
+  },
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "userDetailsClaim": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+        "registration": {
+          "openIdIssuer": "https://login.microsoftonline.com/YOUR_TENANT_ID/v2.0",
+          "clientIdSettingName": "AZURE_CLIENT_ID",
+          "clientSecretSettingName": "AZURE_CLIENT_SECRET"
+        }
+      }
+    }
+  },
+  "globalHeaders": {
+    "Access-Control-Allow-Origin": "https://copilotstudio.microsoft.com",
+    "Access-Control-Allow-Methods": "GET, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization"
+  }
+}
